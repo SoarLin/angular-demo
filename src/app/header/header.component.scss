@@ -1,0 +1,54 @@
+a {
+  cursor: pointer;
+}
+
+.header-search {
+  width: 250px;
+  margin-right: 10px;
+}
+
+.btn-outline-secondary {
+  min-width: 80px;
+  height: 31px;
+}
+
+@mixin bg-image($url) {
+  background-image: url($url);
+  background-size: cover;
+  background-position: center center;
+  text-shadow: 0px 1px 5px #333;
+}
+
+.bg-1 {
+  @include bg-image('/assets/images/coffee_1.jpg');
+}
+
+.bg-2 {
+  @include bg-image('/assets/images/coffee_2.jpg');
+}
+
+@mixin thumb-image($url) {
+  width: 100%;
+  height: 100%;
+  background-image: url($url);
+  background-size: cover;
+  background-position: center center;
+}
+.thumb-bg {
+  width: 200px;
+  height: 100%;
+}
+
+$bgNames: 'world', 'us', 'technology', 'design', 'culture', 'business', 'politics', 'opinion', 'science', 'health', 'style', 'travel';
+@each $name in $bgNames {
+  .thumb-#{$name} {
+    @include thumb-image('/assets/thumb/#{$name}.jpg');
+  }
+}
+
+// .thumb-world {
+//   @include thumb-image('/assets/thumb/world.jpg');
+// }
+// .thumb-us {
+//   @include thumb-image('/assets/thumb/us.jpg');
+// }
