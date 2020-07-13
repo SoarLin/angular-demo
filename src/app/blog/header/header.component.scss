@@ -45,10 +45,3 @@ $bgNames: 'world', 'us', 'technology', 'design', 'culture', 'business', 'politic
     @include thumb-image('/assets/thumb/#{$name}.jpg');
   }
 }
-
-// .thumb-world {
-//   @include thumb-image('/assets/thumb/world.jpg');
-// }
-// .thumb-us {
-//   @include thumb-image('/assets/thumb/us.jpg');
-// }

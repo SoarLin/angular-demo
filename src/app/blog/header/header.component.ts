@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   title: string;
   link: string;
   keyword: string;
-  displayTwoWayBinding = true;
+  displayTwoWayBinding = false;
 
   bgClass = 'bg-dark';
   isWhite = true;
@@ -37,11 +37,13 @@ export class HeaderComponent implements OnInit {
   }
 
   checkKeywordLength($event: KeyboardEvent): void {
-    console.log($event.key);
     if (this.keyword.length > 6 || this.keyword.length === 0) {
       this.displayTwoWayBinding = false;
-    } else {
+    } else if (this.displayTwoWayBinding === false) {
       this.displayTwoWayBinding = true;
+      setTimeout(() => {
+        this.displayTwoWayBinding = false;
+      }, 1000);
     }
   }
 
