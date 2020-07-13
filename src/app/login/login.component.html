@@ -1,7 +1,8 @@
 <div class="login-body text-center">
-  <form class="form-signin" [formGroup]="loginFrom">
+  <form class="form-signin" [formGroup]="loginForm">
     <img class="mb-4" src="./assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <!-- Email -->
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" formControlName="email"
       class="form-control" placeholder="Email address" required autofocus
@@ -11,6 +12,8 @@
       <span *ngIf="email.errors.required">Email is required.</span>
       <span *ngIf="email.errors.email">Please input a valid email.</span>
     </div>
+
+    <!-- Password -->
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" formControlName="password"
       class="form-control" placeholder="Password" required
@@ -20,12 +23,17 @@
       <span *ngIf="password.errors.required">Password is required.</span>
       <span *ngIf="password.errors.minlength">Password must be at least 4 characters long.</span>
     </div>
+
+    <!-- Remember me -->
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" formControlName="remember" value="remember-me"> Remember me
       </label>
     </div>
+
     <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onSubmit()">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+    <p>Form Status: {{ loginForm.status }}</p>
+    <pre class="text-left">{{ loginForm.value | json }}</pre>
   </form>
 </div>

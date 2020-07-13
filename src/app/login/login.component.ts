@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,28 +7,29 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginFrom = new FormGroup({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4)
-    ]),
-    remember: new FormControl('')
-  });
+  loginForm: FormGroup;
 
   get email(): FormControl {
-    return this.loginFrom.get('email') as FormControl;
+    return this.loginForm.get('email') as FormControl;
   }
   get password(): FormControl{
-    return this.loginFrom.get('password') as FormControl;
+    return this.loginForm.get('password') as FormControl;
   }
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(4)
+      ]],
+      remember: [false]
+    });
   }
 
   validClass(valid: boolean): string {
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.loginFrom.value);
+    console.log(this.loginForm.value);
   }
 
 }
