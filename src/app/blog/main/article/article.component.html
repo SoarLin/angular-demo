@@ -1,5 +1,16 @@
 <ng-container>
-  <h2 class="blog-post-title">{{ post.title }}</h2>
+  <h2 *ngIf="!isEdit; else editTitleInput"
+    class="blog-post-title"
+    (click)="editArticleTitle()"
+  >
+    {{ post.title }}
+  </h2>
+  <ng-template #editTitleInput>
+    <input class="edit-title" type="text" [(ngModel)]="editTitle"
+      (keyup.enter)="saveTitle()"
+      (keyup.esc)="exitEditTitle()"
+    >
+  </ng-template>
   <p class="blog-post-meta">{{ post.created|date:'longDate' }} by <a href="#">{{ post.author }}</a></p>
 
   <div [innerHTML]="post.content|nl2br"></div>
