@@ -30,6 +30,22 @@ export class MainComponent implements OnInit {
     }
   ];
 
+  innerHTML = [
+    '{{ Date | date: "medium" }}',
+    '{{ Date | date: "yyyy-MM-dd HH:mm:ss" }}',
+    '{{ String | uppercase }}',
+    '{{ String | lowercase }}',
+    '{{ Number | currency }}',
+    `{{ Number | currency:'USD':'code' }}`,
+    `{{ Number | currency:'TWD':'symbol':'1.0-0' }}`,
+    `{{ Number | currency:'TWD':'code':'4.1-3' }}`,
+    `{{ Number | number:'3.3-4' }}`,
+    `{{ Number | percent:'1.0-3' }}`,
+    `{{ Number | percent:'2.2-4' }}`,
+    `{{ item?.name }}`
+  ];
+  item = null;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   Subscribe(keyword: string = ''): void {
-    let alertMsg = 'You have subscribed.'
+    let alertMsg = 'You have subscribed.';
     if (keyword !== '') {
       alertMsg += ' keyword = \'' + keyword + '\'';
     }
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
       this.displayTwoWayBinding = true;
       setTimeout(() => {
         this.displayTwoWayBinding = false;
-      }, 1000);
+      }, 5000);
     }
   }
 
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
     this.isWhite = ((Math.random() * 10) < 5);
   }
 
-  changePost(category: string): void {
+  changeCategory(category: string): void {
     this.displayCategory = category;
   }
 }

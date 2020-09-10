@@ -7,31 +7,69 @@
 
       <div class="blog-post">
         <h2 class="blog-post-title">Pipe sample</h2>
-        <p class="blog-post-meta">{{ created | date: "medium" }} by <a href="#">{{'Mark' | uppercase}}</a></p>
-                                            <!-- yyyy-MM-dd HH:mm:ss -->    <!-- uppercase / lowercase -->
-        <p>iPhone 12 / 12 Max 基本規格大致相同，包括 4GB RAM、鋁合金機身、雙鏡頭主相機，最大不同在於分別配備 5.4 吋與 6.1 吋螢幕；預期都有 128GB / 256GB 儲存容量版本。，</p>
-        <ul>
+        <p class="blog-post-meta">{{ created | date: "medium" }} by <a href="#">{{'Mark' | lowercase}}</a></p>
+                                   <!-- yyyy-MM-dd HH:mm:ss / medium-->    <!-- uppercase / lowercase -->
+        <ul class="code-sample">
           <li>
-            iPhone 12 售價約為 {{649|currency}}、{{749|currency:'USD':'code'}} 美元（約 {{19405|currency:'TWD':'symbol':'1.0-0'}}、{{22395|currency:'TWD':'code':'4.0-0'}} 台幣）
+            Date Pipe : new Date(2020, 5, 18, 18, 20, 12)
+            <ul>
+              <li><span [innerHTML]='innerHTML[0]'></span> : {{ created | date: "medium" }}</li>
+              <li><span [innerHTML]='innerHTML[1]'></span> : {{ created | date: "yyyy-MM-dd HH:mm:ss" }}</li>
+            </ul>
           </li>
           <li>
-            iPhone 12 Max 為 749、849 美元（約 22,395、{{25385|number:'1.1-2'}} 台幣）
+            UpperCase/LowerCase Pipe : Mark
+            <ul>
+              <li><span [innerHTML]='innerHTML[2]'></span> : {{'Mark' | uppercase}}</li>
+              <li><span [innerHTML]='innerHTML[3]'></span> : {{'Mark' | lowercase}}</li>
+            </ul>
+          </li>
+          <li>
+            CurrencyPipe : 329.456
+            <ul>
+              <li><span [innerHTML]='innerHTML[4]'></span> : {{ 329.456 | currency }}</li>
+              <li><span [innerHTML]='innerHTML[5]'></span> : {{ 329.456 | currency:'USD':'code' }}</li>
+              <li><span [innerHTML]='innerHTML[6]'></span> : {{ 329.456 | currency:'TWD':'symbol':'1.0-0' }}</li>
+              <li><span [innerHTML]='innerHTML[7]'></span> : {{ 329.456 | currency:'TWD':'code':'4.1-3' }}</li>
+            </ul>
+          </li>
+          <li>
+            DecimalPipe : 123.48
+            <ul>
+              <li><span [innerHTML]='innerHTML[8]'></span> : {{ 123.48 | number:'3.3-4' }}</li>
+            </ul>
+          </li>
+          <li>
+            PercentPipe : 0.023829
+            <ul>
+              <li><span [innerHTML]='innerHTML[9]'></span> : {{ 0.023829 | percent:'1.0-3' }}</li>
+              <li><span [innerHTML]='innerHTML[10]'></span> : {{ 0.023829 | percent:'2.2-4' }}</li>
+            </ul>
           </li>
         </ul>
-        <p>根據最新行政院主計處發布的資料，指出台灣2018年每人每月經常性薪資平均為40,980元，每人每月總薪資平均為51,957元，分別增長 {{increase1|percent:'1.0-2'}} 和 {{increase2|percent:'2.2-4'}}。</p>
+        <p>Safe navigation operator : ?.</p>
+        <p>
+          The item name is: <span [innerHTML]='innerHTML[11]'></span>{{ item?.name }} <br>
+          If item is null, the view still renders but the displayed value is blank; you see only "The item name is:" with nothing after it.
+        </p>
+        <ul>
+          <li>
+            The item name is {{ item?.name }}
+          </li>
+        </ul>
       </div><!-- /.blog-post -->
 
       <div *ngFor="let post of posts" class="blog-post">
-        <h2 class="blog-post-title">{{ post.title }}</h2>
-        <p class="blog-post-meta">{{ post.created|date:'longDate' }} by <a href="#">{{ post.author }}</a></p>
+        <!-- <h2 class="blog-post-title">{{ post.title }}</h2>
+        <p class="blog-post-meta">{{ post.created|date:'longDate' }} by <a href="#" target="_blank">{{ post.author }}</a></p>
 
         <div [innerHTML]="post.content|nl2br"></div>
-        <button type="button" class="btn btn-link">more...</button>
+        <button type="button" class="btn btn-link">more...</button> -->
 
-        <!-- <app-article [post]="post"
+        <app-article [post]="post"
           (openLink)="openArticle($event)"
           (updateTitle)="changePostsTitle($event)"
-        ></app-article> -->
+        ></app-article>
       </div><!-- /.blog-post -->
 
       <nav class="blog-pagination">
